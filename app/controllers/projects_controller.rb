@@ -1,4 +1,4 @@
-class ProjectsController < ApplicationController
+class ProjectsController < ApiController
   # GET /projects
   def index
     @projects = Project.select("id, title, budget, final_deadline").all
