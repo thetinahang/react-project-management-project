@@ -3,6 +3,18 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { response: {title: "", description: "", final_deadline: "", budget: "" } };
+  }
+
+  componentDidMount() {
+    fetch('/api/projects')
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
+  }
+
   render() {
     return (
       <div className="App">
