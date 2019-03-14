@@ -12,8 +12,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/projects')
-      .then(response => console.log(response))
+    fetch('/api/projects/')
+      //.then(response => response.json())
+      .then(response => response.text())
+      .then(text => console.log(text))
+      //.then(json => console.log(json))
       .catch(error => console.log(error));
   }
 
