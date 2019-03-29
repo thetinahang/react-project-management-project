@@ -8,19 +8,17 @@ class App extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { response: {title: "", description: "", final_deadline: "", budget: "" } };
-  }
+    this.state = {
+      projects: [] 
+    }}; 
+  
+  componentDidMount() { 
+    fetch('http://localhost:3000/api/projects/')
+      .then(response => response.json())
+      .then(json => this.setState({projects: json}))
+  } 
 
-  componentDidMount() {
-    fetch('/api/projects/')
-      //.then(response => response.json())
-      .then(response => response.text())
-      .then(text => console.log(text))
-      //.then(json => console.log(json))
-      .catch(error => console.log(error));
-  }
-
-render() {
+  render() {
     return (
       <div className="App">
         <Navbar bg="dark" variant="dark" expand="lg">
@@ -44,7 +42,7 @@ render() {
           <h1>Tina's React+Redux Project</h1>
           <h3>Making use of in-depth information and data on high-performance, green building projects across the United States and abroad. </h3>
         </header>
-        <ProjectsContainer projects={this.state.projects}/>
+        <ProjectsContainer projects={this.state.projects.toString()}/>
         
       </div>
     )
